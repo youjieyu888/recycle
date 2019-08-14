@@ -3,6 +3,15 @@ package com.laioffer.recyclerview;
 public class Record {
     private String ShopName, ItemName, Price, Date;
 
+    public int getLogo() {
+        return logo;
+    }
+
+    public void setLogo(int logo) {
+        this.logo = logo;
+    }
+
+    private int logo;
 
     public String getShopName() {
         return ShopName;

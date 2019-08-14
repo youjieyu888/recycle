@@ -31,45 +31,47 @@ public class MainActivity extends AppCompatActivity {
     private void generateData(){
         records = new ArrayList<>();
         Record record = new Record();
-        record.setShopName("Robert");
-        record.setItemName("New York");
-        record.setPrice("+61234456");
+        record.setShopName("Steam");
+        record.setItemName("game 1");
+        record.setLogo(R.drawable.steam);
         records.add(record);
 
         record = new Record();
-        record.setShopName("Tom");
-        record.setItemName("California");
-        record.setDate("tom_frank@gmail.com");
+        record.setShopName("Amazon");
+        record.setItemName("food 1");
+        record.setLogo(R.drawable.amazon);
         records.add(record);
 
         record = new Record();
-        record.setShopName("Smith");
-        record.setItemName("Philadelphia");
-        record.setDate("smith_carrol@gmail.com");
+        record.setShopName("Amazon");
+        record.setItemName("food 2");
+        record.setLogo(R.drawable.amazon);
         records.add(record);
 
         record = new Record();
-        record.setShopName("Ryan");
-        record.setItemName("Canada");
-        record.setPrice("+612001456");
+        record.setShopName("Steam");
+        record.setItemName("game 2");
+        record.setLogo(R.drawable.steam);
         records.add(record);
 
         record = new Record();
-        record.setShopName("Mark");
-        record.setItemName("Boston");
-        record.setDate("mark_walmerd@gmail.com");
+        record.setShopName("Ebay");
+        record.setItemName("item 1");
+        record.setLogo(R.drawable.ebay);
+        record.setPrice("$1000!!!!");
         records.add(record);
 
         record = new Record();
-        record.setShopName("Adam");
-        record.setItemName("Brooklyn");
-        record.setPrice("+61211780");
+        record.setShopName("Steam");
+        record.setItemName("game 3");
+        record.setLogo(R.drawable.steam);
         records.add(record);
 
         record = new Record();
-        record.setShopName("Kevin");
-        record.setItemName("New Jersey");
-        record.setPrice("+94221035");
+        record.setShopName("Ebay");
+        record.setItemName("item 2");
+        record.setPrice("$9999!!!!");
+        record.setLogo(R.drawable.ebay);
         records.add(record);
     }
 }
