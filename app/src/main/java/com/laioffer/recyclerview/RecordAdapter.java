@@ -15,9 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private static final int STEAM = 1;
-    private static final int AMAZON = 2;
-    private static final int EBAY = 3;
+    enum Company{
+        STEAM(0), AMAZON(1), EBAY(2);
+
+        private final int type;
+        private Company(int type){
+            this.type=type;
+        }
+        public int getType(){
+            return this.type;
+        }
+    }
     private List<Record> records;
     private Context context;
 
@@ -30,7 +38,15 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
-        return new ViewHolder(view);
+        if(viewType==Company.STEAM.getType()){
+            return new SteamViewHolder(view);
+        }else if(viewType==Company.AMAZON.getType()){
+            return new AmazonViewHolder(view);
+        }else if(viewType==Company.EBAY.getType()){
+            return new EbaySteamViewHolder(view);
+        }else{
+            return new ViewHolder(view);
+        }
     }
 
     @Override
@@ -47,11 +63,11 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     public int getItemViewType(int position) {
         switch(records.get(position).getShopName()){
             case "Steam":
-                return STEAM;
+                return Company.STEAM.getType();
             case "Amazon":
-                return AMAZON;
+                return Company.AMAZON.getType();
             case "Ebay":
-                return EBAY;
+                return Company.EBAY.getType();
             default:
                 return -1;
         }
@@ -59,10 +75,10 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     int tempid=0;
     class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView txtName;
-        private TextView txtAddress;
-        private ImageView logo;
-        private View itemView ;
+        protected TextView txtName;
+        protected TextView txtAddress;
+        protected ImageView logo;
+        protected View itemView ;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -72,25 +88,46 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
             this.itemView=itemView;
         }
 
-        private void setDetails(Record record) {
+        protected void setDetails(Record record) {
             txtName.setText(record.getShopName());
             txtAddress.setText(record.getItemName());
             logo.setImageResource(record.getLogo());
-
-            switch(record.getShopName()){
-                case "Steam":
-                    txtName.setPaddingRelative(10,10,10,10);
-                    break;
-                case "Amazon":
-                    logo.getLayoutParams().height = 200;
-                    logo.getLayoutParams().width = 200;
-                    logo.requestLayout();
-                    break;
-                case "Ebay":
-                    txtName.setText(record.getShopName()+"                           "+record.getPrice());
-                    break;
-            }
         }
     }
 
+    class SteamViewHolder extends ViewHolder{
+        public SteamViewHolder(@NonNull View itemView){
+            super(itemView);
+        }
+
+        @Override
+        protected void setDetails(Record record) {
+            super.setDetails(record);
+            txtName.setPaddingRelative(10,10,10,10);
+        }
+    }
+    class AmazonViewHolder extends ViewHolder{
+        public AmazonViewHolder(@NonNull View itemView){
+            super(itemView);
+        }
+
+        @Override
+        protected void setDetails(Record record) {
+            super.setDetails(record);
+            logo.getLayoutParams().height = 200;
+            logo.getLayoutParams().width = 200;
+            logo.requestLayout();
+        }
+    }
+    class EbaySteamViewHolder extends ViewHolder{
+        public EbaySteamViewHolder(@NonNull View itemView){
+            super(itemView);
+        }
+
+        @Override
+        protected void setDetails(Record record) {
+            super.setDetails(record);
+            txtName.setText(record.getShopName()+"                           "+record.getPrice());
+        }
+    }
 }
