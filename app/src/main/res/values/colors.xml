@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color shopName="colorPrimary">#008577</color>
+    <color shopName="colorPrimaryDark">#00574B</color>
+    <color shopName="colorAccent">#D81B60</color>
+</resources>
