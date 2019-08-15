@@ -1,12 +1,10 @@
 package com.laioffer.recyclerview;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -37,15 +35,18 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item, parent, false);
+        View view;
         if(viewType==Company.STEAM.getType()){
+            view = LayoutInflater.from(context).inflate(R.layout.item_steam, parent, false);
             return new SteamViewHolder(view);
         }else if(viewType==Company.AMAZON.getType()){
+            view = LayoutInflater.from(context).inflate(R.layout.item_amazon, parent, false);
             return new AmazonViewHolder(view);
         }else if(viewType==Company.EBAY.getType()){
+            view = LayoutInflater.from(context).inflate(R.layout.item_ebay, parent, false);
             return new EbaySteamViewHolder(view);
         }else{
-            return new ViewHolder(view);
+            return null;
         }
     }
 
@@ -77,21 +78,18 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
         protected TextView txtName;
         protected TextView txtAddress;
-        protected ImageView logo;
         protected View itemView ;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtName = itemView.findViewById(R.id.txtName);
             txtAddress = itemView.findViewById(R.id.txtAddress);
-            logo = itemView.findViewById(R.id.logo);
             this.itemView=itemView;
         }
 
         protected void setDetails(Record record) {
             txtName.setText(record.getShopName());
             txtAddress.setText(record.getItemName());
-            logo.setImageResource(record.getLogo());
         }
     }
 
@@ -103,7 +101,7 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         @Override
         protected void setDetails(Record record) {
             super.setDetails(record);
-            txtName.setPaddingRelative(10,10,10,10);
+
         }
     }
     class AmazonViewHolder extends ViewHolder{
@@ -114,20 +112,19 @@ public class RecordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
         @Override
         protected void setDetails(Record record) {
             super.setDetails(record);
-            logo.getLayoutParams().height = 200;
-            logo.getLayoutParams().width = 200;
-            logo.requestLayout();
         }
     }
     class EbaySteamViewHolder extends ViewHolder{
+        private TextView txtPrice;
         public EbaySteamViewHolder(@NonNull View itemView){
             super(itemView);
+            txtPrice = itemView.findViewById(R.id.txtPrice);
         }
 
         @Override
         protected void setDetails(Record record) {
             super.setDetails(record);
-            txtName.setText(record.getShopName()+"                           "+record.getPrice());
+            txtPrice.setText(record.getPrice());
         }
     }
 }

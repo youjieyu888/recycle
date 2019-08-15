@@ -33,45 +33,38 @@ public class MainActivity extends AppCompatActivity {
         Record record = new Record();
         record.setShopName("Steam");
         record.setItemName("game 1");
-        record.setLogo(R.drawable.steam);
         records.add(record);
 
         record = new Record();
         record.setShopName("Amazon");
         record.setItemName("food 1");
-        record.setLogo(R.drawable.amazon);
         records.add(record);
 
         record = new Record();
         record.setShopName("Amazon");
         record.setItemName("food 2");
-        record.setLogo(R.drawable.amazon);
         records.add(record);
 
         record = new Record();
         record.setShopName("Steam");
         record.setItemName("game 2");
-        record.setLogo(R.drawable.steam);
         records.add(record);
 
         record = new Record();
         record.setShopName("Ebay");
-        record.setItemName("item 1");
-        record.setLogo(R.drawable.ebay);
+        record.setItemName("item_steam 1");
         record.setPrice("$1000!!!!");
         records.add(record);
 
         record = new Record();
         record.setShopName("Steam");
         record.setItemName("game 3");
-        record.setLogo(R.drawable.steam);
         records.add(record);
 
         record = new Record();
         record.setShopName("Ebay");
-        record.setItemName("item 2");
+        record.setItemName("item_steam 2");
         record.setPrice("$9999!!!!");
-        record.setLogo(R.drawable.ebay);
         records.add(record);
     }
 }
